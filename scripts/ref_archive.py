@@ -5,7 +5,7 @@
   python3 ref_archive.py commons [--dir refs/style-refs]       # after you fill cards: prints words repeated across cards
 
 `add` copies the image to <dir>/<id>-<slug>.<ext> and appends a card to <dir>/INDEX.md with the fields that make a reference
-reusable (why it works / reverse prompt / rule we take / rule we refuse). A card with an empty field is not done: the next
+reusable (why it works / reverse prompt / rule we take / rule we refuse / creative operator / derived variants). A card with an empty field is not done: the next
 design step reads INDEX.md, not the image. `commons` is the 'read all prompts together' trick: words that recur in several
 reverse prompts are the real shared rules of the reference set.
 """
@@ -19,6 +19,8 @@ CARD = """
 - reverse prompt (English, one sentence a generator could reproduce it from): 
 - rule we take (testable): 
 - rule we refuse (what would be copying): 
+- creative operator (verb + object + constraint, no adjectives): 
+- derived variants (3, differing on >=2 axes): 
 """
 
 
@@ -33,7 +35,7 @@ def add(a):
         idx.write_text("# Reference index (read this, not the pictures)\n")
     with idx.open("a") as f:
         f.write(CARD.format(id=a.id, title=a.title, fname=fname, source=a.source))
-    print(f"ok {d/fname} -> card appended to {idx}; fill the 4 empty fields before moving on")
+    print(f"ok {d/fname} -> card appended to {idx}; fill the 6 empty fields before moving on")
 
 
 def commons(a):

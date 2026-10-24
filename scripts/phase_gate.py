@@ -7,6 +7,7 @@ Prints PASS/FAIL per artifact and exits 1 on any FAIL. Run it at the START of a 
 and at the END (did I produce mine?). A file counts only if it exists, is >300 bytes and has no 'TODO' / empty template fields.
 Beyond "file is real", extra checks encode what the user keeps repeating (references/user-repeated-demands.md):
   refs   >=8 cards, >=4 non-App types, >=2 github/award, every card has a reverse prompt   (D1)
+         + refs/style-names.md (>=20 terms), every card has creative operator + 3 derived variants (D20 D21)
   style  >=3 reverse-prompt cards, bible has 要/不要 + 反例, project CLAUDE.md has 审美红线     (D2 D3)
   features/growth  must name the aha moment                                                  (D4)
   ui     "不如它" table >=3 rows, no N/10 score used as verdict                              (D5)
@@ -73,6 +74,13 @@ def extra_refs(root):
     out.append((n_nonapp >= 4, f"non-App types>=4 (have {n_nonapp}; fill '- type:' with github/award/game/art/social/app)"))
     out.append((n_open >= 2, f"github/award>=2 (have {n_open})"))
     out.append((len(cs) > 0 and n_rev == len(cs), f"every card has a reverse prompt ({n_rev}/{len(cs)})"))
+    nm = read(root, "refs/style-names.md")
+    n_terms = sum(1 for l in nm.splitlines() if l.count("|") >= 3 and not re.match(r"^\s*\|[\s:|-]+\|?\s*$", l)) - 1
+    out.append((n_terms >= 20, f"refs/style-names.md style-name table >=20 terms (have {max(n_terms,0)})  [D21]"))
+    n_op = sum(1 for c in cs if len(field(c, "creative operator")) > 8)
+    n_var = sum(1 for c in cs if len(field(c, "derived variants")) > 20)
+    out.append((len(cs) > 0 and n_op == len(cs), f"every card has a creative operator ({n_op}/{len(cs)})  [D20]"))
+    out.append((len(cs) > 0 and n_var == len(cs), f"every card has 3 derived variants ({n_var}/{len(cs)})  [D20]"))
     return out
 
 
