@@ -4,6 +4,7 @@
 
 <p align="center"><img src="docs/share.png" alt="pro-launch: from an idea to style frames" width="100%"></p>
 <p align="center"><sub>Thuộc bộ <a href="https://github.com/jack-reson8/copy-that"><b>Copy That</b></a> · cài cả bộ bằng một lệnh</sub></p>
+<p align="center"><a href="https://jack-reson8.github.io/skill-skill/check/"><img src="https://img.shields.io/badge/skill%20health-100%2F100-brightgreen" alt="skill health 100/100"></a></p>
 
 Một skill cho Claude Code giúp đưa sản phẩm từ 0 lên 1 theo hướng **gu thẩm mỹ đặt lên hàng đầu**: định vị → đặt tên, tên miền & nhãn hiệu → tìm tham chiếu (ưu tiên GitHub/mã nguồn mở, sau đó đến App Store và các app đạt giải) → style bible → bản đồ tính năng → vòng lặp xây dựng UI/UX → tạo asset → QA trên thiết bị thật → video ra mắt → GTM → tăng trưởng → phát hành mã nguồn mở / lên App Store.
 

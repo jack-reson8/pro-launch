@@ -4,6 +4,7 @@ English | [简体中文](README.zh-CN.md) | [日本語](README.ja.md) | [한국�
 
 <p align="center"><img src="docs/share.png" alt="pro-launch: from an idea to style frames" width="100%"></p>
 <p align="center"><sub>Part of <a href="https://github.com/jack-reson8/copy-that"><b>Copy That</b></a> · install the whole set in one line</sub></p>
+<p align="center"><a href="https://jack-reson8.github.io/skill-skill/check/"><img src="https://img.shields.io/badge/skill%20health-100%2F100-brightgreen" alt="skill health 100/100"></a></p>
 
 A Claude Code skill that takes a product from 0 to 1 **taste-first**: positioning → naming, domains & trademark → reference hunting (GitHub/open-source first, then App Store and award winners) → style bible → feature map → UI/UX build loop → asset generation → device QA → launch video → GTM → growth → open-source / App Store shipping.
 

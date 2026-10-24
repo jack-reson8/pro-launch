@@ -4,6 +4,7 @@
 
 <p align="center"><img src="docs/share.png" alt="pro-launch: from an idea to style frames" width="100%"></p>
 <p align="center"><sub><a href="https://github.com/jack-reson8/copy-that"><b>Copy That</b></a> सीरीज़ का हिस्सा · एक लाइन में पूरा सेट इंस्टॉल करें</sub></p>
+<p align="center"><a href="https://jack-reson8.github.io/skill-skill/check/"><img src="https://img.shields.io/badge/skill%20health-100%2F100-brightgreen" alt="skill health 100/100"></a></p>
 
 यह Claude Code का एक skill है जो किसी प्रोडक्ट को 0 से 1 तक **टेस्ट-फ़र्स्ट** तरीके से ले जाता है: पोज़िशनिंग → नाम, डोमेन और ट्रेडमार्क → रेफ़रेंस खोज (पहले GitHub/ओपन-सोर्स, फिर App Store और अवॉर्ड विजेता) → स्टाइल बाइबल → फ़ीचर मैप → UI/UX बिल्ड लूप → असेट जनरेशन → असली डिवाइस पर QA → लॉन्च वीडियो → GTM → ग्रोथ → ओपन-सोर्स / App Store पर शिप।
 

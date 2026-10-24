@@ -4,6 +4,7 @@
 
 <p align="center"><img src="docs/share.png" alt="pro-launch: from an idea to style frames" width="100%"></p>
 <p align="center"><sub>属于 <a href="https://github.com/jack-reson8/copy-that"><b>Copy That</b></a> 系列 · 一行命令装全套</sub></p>
+<p align="center"><a href="https://jack-reson8.github.io/skill-skill/check/"><img src="https://img.shields.io/badge/skill%20health-100%2F100-brightgreen" alt="skill health 100/100"></a></p>
 
 A Claude Code skill，用 **审美优先** 的方式把产品从 0 做到 1：定位 → 起名、域名与商标 → 找参考（先 GitHub 开源，再 App Store 和获奖作品）→ 风格圣经 → 功能地图 → UI/UX 搭建循环 → 素材生成 → 真机 QA → 发布视频 → GTM → 增长 → 开源 / App Store 上架。
 

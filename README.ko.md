@@ -4,6 +4,7 @@
 
 <p align="center"><img src="docs/share.png" alt="pro-launch: from an idea to style frames" width="100%"></p>
 <p align="center"><sub><a href="https://github.com/jack-reson8/copy-that"><b>Copy That</b></a> 시리즈 · 한 줄로 전체 설치</sub></p>
+<p align="center"><a href="https://jack-reson8.github.io/skill-skill/check/"><img src="https://img.shields.io/badge/skill%20health-100%2F100-brightgreen" alt="skill health 100/100"></a></p>
 
 제품을 0에서 1로 **감각 우선**으로 끌고 가는 Claude Code 스킬입니다. 포지셔닝 → 네이밍·도메인·상표 → 레퍼런스 탐색(GitHub/오픈소스 먼저, 그다음 App Store와 수상작) → 스타일 바이블 → 기능 맵 → UI/UX 빌드 루프 → 에셋 생성 → 실기기 QA → 런칭 영상 → GTM → 그로스 → 오픈소스 / App Store 출시까지 다룹니다.
 

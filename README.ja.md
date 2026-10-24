@@ -4,6 +4,7 @@
 
 <p align="center"><img src="docs/share.png" alt="pro-launch: from an idea to style frames" width="100%"></p>
 <p align="center"><sub><a href="https://github.com/jack-reson8/copy-that"><b>Copy That</b></a> シリーズの一つ · 1 行で全部インストール</sub></p>
+<p align="center"><a href="https://jack-reson8.github.io/skill-skill/check/"><img src="https://img.shields.io/badge/skill%20health-100%2F100-brightgreen" alt="skill health 100/100"></a></p>
 
 プロダクトを 0 から 1 へ **センス最優先** で進める Claude Code スキルです。ポジショニング → ネーミング・ドメイン・商標 → リファレンス探し（まず GitHub / OSS、次に App Store とアワード受賞作）→ スタイルバイブル → 機能マップ → UI/UX ビルドループ → アセット生成 → 実機 QA → ローンチ動画 → GTM → グロース → OSS 公開 / App Store 申請、までを扱います。
 
