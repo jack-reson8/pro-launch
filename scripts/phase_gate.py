@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Gate check: does the project folder contain this phase's required artifacts, and are they filled in?
 
-  python3 phase_gate.py <project_dir> <phase|all>       phases: positioning naming refs style features ui assets qa video gtm growth ship
+  python3 phase_gate.py <project_dir> <phase|all>       phases: positioning naming refs style features frames ui assets qa video gtm growth ship
 
 Prints PASS/FAIL per artifact and exits 1 on any FAIL. Run it at the START of a phase (are the previous phase's artifacts real?)
 and at the END (did I produce mine?). A file counts only if it exists, is >300 bytes and has no 'TODO' / empty template fields.
@@ -10,7 +10,9 @@ Beyond "file is real", extra checks encode what the user keeps repeating (refere
          + refs/style-names.md (>=20 terms), every card has creative operator + 3 derived variants (D20 D21)
   style  >=3 reverse-prompt cards, bible has 要/不要 + 反例, project CLAUDE.md has 审美红线     (D2 D3)
   features/growth  must name the aha moment                                                  (D4)
-  ui     "不如它" table >=3 rows, no N/10 score used as verdict                              (D5)
+  frames 06b visual craft, run BEFORE any UI code: >=3 technique sheets (hero/type scale/whitespace/signature),
+         >=3 existing *-vs-ref.jpg style-frame comparisons, >=1 [product-native] direction, a 'Picked:' line   (D25)
+  ui     "不如它" table >=3 rows, no N/10 score used as verdict, + every frames check                 (D5 D25)
   video  must state the transition method (转场)                                            (D7)
   assets every asset row carries a source/授权 word                                          (D11 D19)
 Paths are the skill's convention (see references/*.md); override in <project>/.prolaunch.json: {"positioning": ["docs/pos.md"]}.
@@ -23,6 +25,7 @@ GATES = {
     "refs":        ["refs/style-refs/INDEX.md", "docs/competitors.md"],
     "style":       ["docs/style-bible.md"],
     "features":    ["docs/feature-map.md"],
+    "frames":      ["docs/technique-sheets.md", "docs/style-frames.md"],
     "ui":          ["docs/ui-log.md"],
     "assets":      ["docs/asset-list.md"],
     "qa":          ["docs/qa-walkthrough.md"],
@@ -106,6 +109,23 @@ def extra_ui(root):
     return [
         ("不如它" in t and n >= 3, f"'哪里不如它' table has >=3 rows (have {max(n,0)})"),
         (not score, "no N/10 self-score in ui-log"),
+    ] + extra_craft(root)
+
+
+def extra_craft(root):
+    """06b visual craft: technique sheets, 3 style frames each beside a reference, a pick before UI code."""
+    ts = read(root, "docs/technique-sheets.md")
+    sheets = re.split(r"(?m)^### ", ts)[1:]
+    n_full = sum(1 for s in sheets if all(len(field(s, k)) > 3 for k in ("hero", "type scale", "whitespace", "signature move")))
+    sf = read(root, "docs/style-frames.md")
+    vs = sorted(set(re.findall(r"[\w./-]+-vs-ref\.jpg", sf)))
+    vs_ok = [v for v in vs if (root / v).exists() or (root / "docs/style-frames" / pathlib.Path(v).name).exists()]
+    pick = re.search(r"(?mi)^\W*picked:[ \t]*(\S.*)$", sf)
+    return [
+        (n_full >= 3, f"technique-sheets.md: >=3 references with hero/type scale/whitespace/signature move filled (have {n_full})  [D25]"),
+        (len(vs_ok) >= 3, f"style-frames.md links >=3 existing *-vs-ref.jpg comparisons (have {len(vs_ok)}/{len(vs)})  [D25]"),
+        ("[product-native]" in sf, "style-frames.md has >=1 [product-native] direction  [D25]"),
+        (bool(pick), "style-frames.md has a 'Picked:' line (no UI code before it)  [D25]"),
     ]
 
 
@@ -119,7 +139,7 @@ def extra_assets(root):
 
 
 EXTRA = {"refs": extra_refs, "style": extra_style, "features": aha("docs/feature-map.md"),
-         "growth": aha("docs/metrics.md"), "ui": extra_ui, "video": extra_video, "assets": extra_assets}
+         "growth": aha("docs/metrics.md"), "frames": extra_craft, "ui": extra_ui, "video": extra_video, "assets": extra_assets}
 
 
 def main():

@@ -112,3 +112,8 @@
 ## D24 注册付款别反复说不能，直接备好；做完自动继续
 ①"别老说你不能替我做，把页面打开、信息预填好；做完别干等，自己接着往下做。"
 ③`manual-tasks.md` 每项带链接和已预填内容；后台任务/子代理写明完成后的下一步；域名价格看真实报价页（短词在腾讯云是溢价）。
+
+## D25 产品 UI 要和发布片一样好看（视觉工艺迁移，2026-10-24）
+①"pro-launch 做不出这么好看的产品；pro-motion 那套片子的样子我很满意。"（转述）
+②发布片好看靠方法：真实参考帧、逐个技法表、开工前 3 个分歧风格帧、用 App 真实渲染图加排版合成而不是代码画、苹果式克制（一屏一个主角、大字号对比、大留白、真实系统界面时刻）。产品 UI 跳过了这些步骤，从记忆出发直接写代码。
+③★`phase_gate.py <项目> frames` 必须全过才写 UI 代码：`docs/technique-sheets.md` ≥3 份（主角占比/字号比/留白/招牌手法）、`docs/style-frames.md` 链接 ≥3 张真实存在的 `*-vs-ref.jpg`、≥1 个 `[product-native]` 方向、有 `Picked:` 行。细则 `references/06b-visual-craft.md`，脚本 `scripts/ref_frames.py`、`scripts/style_frame.py`。

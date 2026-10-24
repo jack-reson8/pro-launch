@@ -44,3 +44,33 @@
 
 ## F. 完成定义（每张需求卡）
 1. 达到验收标准并附截图/数据；2. 写明没验证的部分；3. 可复用物已登记；4. 状态行已更新；5. 没动别人名下的文件。
+
+## G. 技法表（06b V2，每个参考一份，写进 docs/technique-sheets.md）
+```
+### <参考编号> · <作品名>（<品牌/工作室, 年>）· sheet: refs/frames/<名>_sheet.jpg
+- hero:
+- type scale:
+- whitespace:
+- palette rule:
+- depth & material:
+- real UI moment:
+- motion / transition device:
+- signature move:
+- borrow:  · refuse:
+```
+
+## H. 风格帧评审（06b V3，写进 docs/style-frames.md，发评审页给用户）
+```
+## A · <方向名> [ref-derived | product-native]
+配对参考：<技法表编号 · 作品名>
+借的技法（2–3 个）：
+用的真实渲染/截图（每帧不同主体）：
+帧：docs/style-frames/A.jpg · 对比：docs/style-frames/A-vs-ref.jpg
+哪里不如它（≥3 行，具体到元素，同样写进对比图）：
+1.
+2.
+3.
+
+推荐：<哪个/怎么混> · 理由：
+Picked:
+```

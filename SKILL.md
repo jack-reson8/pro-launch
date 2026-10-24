@@ -1,6 +1,6 @@
 ---
 name: pro-launch
-description: "pro-launch: product lifecycle skill for building an app/product from 0 to 1 with AI, taste-first: idea and positioning, naming and domains, reference hunting (GitHub/open-source first, then App Store and award winners), style bible, feature map, UI/UX build loop, asset generation (cutout + vectorize), device QA, launch video, GTM and social, growth metrics, open-source and App Store shipping. Use when the user says: 做 App, 做产品, 从 0 到 1, 想个产品, 起名, 域名, 找参考, 竞品, 风格, UI 太丑, 像 web, 不像 SwiftUI, 审美红线, 功能规划, 真机测试, launch, 发布视频, GTM, 小红书/X 运营, 增长, 上架, 开源, 风格名词库, 创意解码, 创意算子, 衍生变体, 审美积累; or 'build me an app', 'this UI looks ugly/generic', 'find references', 'name this product', 'plan the launch'. Forces artifacts and gates per phase, ships scripts, and carries a ledger of mistakes and the user's repeated demands (references first, settle lessons, strong style, GTM/aha, smooth motion, depth, act without asking)."
+description: "pro-launch: product lifecycle skill for building an app/product from 0 to 1 with AI, taste-first: idea and positioning, naming and domains, reference hunting (GitHub/open-source first, then App Store and award winners), style bible, feature map, style frames composited from real app renders beside named references, UI/UX build loop, asset generation (cutout + vectorize), device QA, launch video, GTM and social, growth metrics, open-source and App Store shipping. Use when the user says: 做 App, 做产品, 从 0 到 1, 想个产品, 起名, 域名, 找参考, 竞品, 风格, UI 太丑, 像 web, 不像 SwiftUI, 审美红线, 功能规划, 真机测试, launch, 发布视频, GTM, 小红书/X 运营, 增长, 上架, 开源, 风格帧, 不够好看, 像发布片一样好看, 风格名词库, 创意解码, 创意算子, 衍生变体, 审美积累; or 'build me an app', 'this UI looks ugly/generic', 'find references', 'name this product', 'plan the launch'. Forces artifacts and gates per phase, ships scripts, and carries a ledger of mistakes and the user's repeated demands (references first, settle lessons, strong style, GTM/aha, smooth motion, depth, act without asking)."
 ---
 
 # pro-launch · 产品全生命周期（审美优先）
@@ -12,13 +12,13 @@ description: "pro-launch: product lifecycle skill for building an app/product fr
 2. **沉淀**：纠正和新坑当场写进 CLAUDE.md / 记忆 / skill，永远有效 → D2
 3. **强风格化、不规整、indie**：规整圆角矩形就是失败 → D3
 4. **GTM、增长、aha**：从第一天按能卖来做，先验证有人付钱 → D4
-5. **审美与手感不达标就打回**：丑、土、web 感；要丝滑转场、一气呵成 → D5 D7
+5. **审美与手感不达标就打回**：丑、土、web 感；要丝滑转场、一气呵成；产品 UI 要和发布片一样好看 → D5 D7 D25
 6. **高效省 token**：一键执行，走不通回头，不反复验证，调研交子代理 → D6
 7. **要深度**：交完整报告而不是问答，做完直接打开给他看 → D8 D18
 8. **自己做别问我，用好现有工具**：只问口味/花钱/发布/账号；先查连接器与 MCP → D9 D10
 
 ## 开工三步（每次，不问用户小事）
-0. 读 `references/user-repeated-demands.md`（一页，24 条），并把项目文件夹与记忆里已有的材料先翻一遍，再决定缺什么。
+0. 读 `references/user-repeated-demands.md`（一页，25 条），并把项目文件夹与记忆里已有的材料先翻一遍，再决定缺什么。
 1. `python3 scripts/phase_gate.py <项目目录> all` 看现在在哪个阶段、前一阶段产物是否是真的。
 2. 读 `references/mistakes.md`（错误账本，每条有"检查动作"）；在当前阶段结束前逐条过一遍相关项。
 3. 项目根没有 `CLAUDE.md` 就建一个：产品一句话、审美红线（要/不要）、目录、"旧会话为什么变差"。红线只写这里，所有会话共用。
@@ -32,7 +32,7 @@ description: "pro-launch: product lifecycle skill for building an app/product fr
 | 3 | 找参考 | `refs/style-names.md`（风格名词库，先于搜作品）+ `refs/style-refs/INDEX.md`（每张图一张"反推提示词卡"，**附创意算子与 3 个衍生变体**）+ `competitors.md`（只当功能清单） | **顺序铁律：GitHub 开源与高质量库 → App Store 获奖/宣传图 → 游戏 UI/海报/艺术作品 → 灵感平台。** ★≥8 个来源，≥4 个不是 App，≥2 个开源/获奖，每张卡有反推提示词（D1）、★`creative operator` 与 3 条 `derived variants`（D20）；封闭社区词请用户截图喂图，进 manual-tasks（D21） | 03 · 03b |
 | 4 | 风格圣经 | `style-bible.md`：规则（可检查的"要/不要"）+ 色字体 token + 3 个反例 | ★≥3 张反推提示词卡；规则可被截图验证，含"反例"；项目 CLAUDE.md 有"审美红线"（D2 D3） | 04 |
 | 5 | 功能策划 | `feature-map.md`：入口层级图、功能优先级表（乘法增量/成本）、"砍掉"清单 | ★写明 aha 及 ≤3 步到达（D4）；每个功能写乘法增量；有"砍掉"清单（D15）；对照"大类即入口、进即编辑器"范式，写出选模板步数（D22） | 05 |
-| 6 | UI/UX 构建循环 | `ui-log.md`：每版一节（参考→机制→SwiftUI 能力→截图→"哪里不如它"） | **先出风格预览给用户选再写真代码；能代码批量生成就做风格实验室网格页（≥12 格），审美方向交 Codex（D23）**；★"哪里不如它"表 ≥3 行、无 N/10；每屏 ≥2 项平台能力；第 3 版仍不满意 → 停下写方案（D5 D7 D16 D17） | 06 |
+| 6 | UI/UX 构建循环 | **先 06b**：`technique-sheets.md` + `style-frames.md`（3 个风格帧，各配具名参考与 `-vs-ref.jpg`，有 `Picked:`）；再 `ui-log.md`：每版一节（参考→机制→SwiftUI 能力→截图→"哪里不如它"） | ★`phase_gate.py <项目> frames` 全过才写 UI 代码（D25）；**先出风格预览给用户选再写真代码；能代码批量生成就做风格实验室网格页（≥12 格），审美方向交 Codex（D23）**；★"哪里不如它"表 ≥3 行、无 N/10；每屏 ≥2 项平台能力；第 3 版仍不满意 → 停下写方案（D5 D7 D16 D17） | 06b · 06 |
 | 7 | 素材生成 | `asset-list.md`：每个素材谁生成、提示词、出处/授权、处理方式 | 素材不用代码画；★每项有来源/授权；去底/矢量化走 `scripts/cutout_vector.sh`；不重复同一张（D11 D19） | 07 |
 | 8 | 真机与 QA | `qa-walkthrough.md`：新用户走查（每屏截图+问题）、权限被拒/离线/空状态、性能数 | 真机或标明"仅模拟器"；失败不能显示成功（D12）；卡死先量原因再动手（D6） | 08 |
 | 9 | 发布视频 | `video-brief.md`：音乐机制、主角、镜头表 | **音频先行**，★写明转场方式（D7）；成片前先抽帧联系表；委托 `pro-motion` | 09 |
@@ -41,7 +41,7 @@ description: "pro-launch: product lifecycle skill for building an app/product fr
 | 12 | 开源与上架 | `ship-checklist.md` + `lessons.md` | 隐私政策/条款真实链接、订阅页合规、许可证、素材授权、无密钥入库；★`docs/lessons.md` 记下本项目新坑与落盘位置（D2） | 12 |
 
 细则（到该阶段**才读**那一页，读完必须产出上表那个文件）：
-`references/01-idea-positioning.md` · `02-naming-brand.md` · `03-find-references.md` · `03b-style-names-and-creative-decode.md` · `04-style-bible.md` · `05-feature-planning.md` · `06-ui-build-loop.md` · `07-asset-generation.md` · `08-device-qa.md` · `09-launch-video.md` · `10-gtm-social.md` · `11-growth-data.md` · `12-ship-opensource.md`（均在 `references/`），错误账本 `references/mistakes.md`。
+`references/01-idea-positioning.md` · `02-naming-brand.md` · `03-find-references.md` · `03b-style-names-and-creative-decode.md` · `04-style-bible.md` · `05-feature-planning.md` · `06b-visual-craft.md`（UI 阶段先读）· `06-ui-build-loop.md` · `07-asset-generation.md` · `08-device-qa.md` · `09-launch-video.md` · `10-gtm-social.md` · `11-growth-data.md` · `12-ship-opensource.md`（均在 `references/`），错误账本 `references/mistakes.md`。
 
 ## 开工前盘点与工具可用性
 盘点前先跑 `git branch -a` 与 `git worktree list`（M38）；陌生名字先 grep 项目与记忆，可能是语音识别错（M39）；方案里用到 Rive/Spline/LottieFiles 先标可用性：Rive MCP 需开桌面编辑器，Spline、LottieFiles 需用户 /mcp 授权（M40）。后台任务写明完成后自动做什么（M36）。
@@ -56,7 +56,7 @@ description: "pro-launch: product lifecycle skill for building an app/product fr
 4. **口味问题必须带可见预览**（图/HTML/截图），给 2–4 个选项加推荐；没有预览先做预览。
 5. **一个会话一个里程碑。** 约 300 回合或开始变卡，把红线/结论/未完成项写进 CLAUDE.md，新开会话；别在旧上下文里继续堆。
 6. **第 3 版不满意就停。** 写诊断和新方案，不在旧方案上堆补丁。
-7. **美术不靠代码画。** 用真实资产或生成资产；代码只做排版与效果。
+7. **美术不靠代码画。** 用真实资产或生成资产；代码只做排版与效果。风格帧 = App 真实渲染/截图 + 排版 + 系统界面外壳（06b）。
 8. **失败不能伪装成功。** 权限被拒、离线、没识别出人像，都要如实提示并给补救按钮。
 9. **复用优先。** 动手前查已有资产清单，能改就不重写；新增可复用物当天登记。
 10. **清单一次给全。** 开工前把"需要用户本人做的事"（登录、付款、发布、授权）列成一张表，之后不逐个打断。
@@ -66,10 +66,12 @@ description: "pro-launch: product lifecycle skill for building an app/product fr
 - `appstore_refs.py` 批量下载 App Store 宣传图（免费、免注册；用 `/usr/bin/python3`）。
 - `ref_archive.py` 参考图归档并生成"反推提示词卡"；`commons` 子命令找出多张图的共同词。
 - `domain_check.py` 域名（RDAP）+ 各区 App Store 同名检索。
+- `ref_frames.py` 参考视频/图片 → 真实帧联系表（yt-dlp+ffmpeg；YouTube 要登录时自动改用公开缩略帧；下载走 curl）。
+- `style_frame.py` 风格帧合成：`frame` 用 JSON 把真实渲染图/截图 + 排版 + 锁屏/通知/灵动岛外壳拼成帧；`compare` 出"参考 vs 风格帧"对比图并把 ≥3 条"哪里不如它"烧进图里（少于 3 条或写分数直接报错）；`sheet` 出三选一拼图。
 - `cutout_vector.sh` 生成图 → Vision 抠图（缩边）→ vtracer 矢量化 → svgo；`--mono` 走 potrace。依赖同目录的 `scripts/cut.swift`、`scripts/vectorize.js`。
 
 ## 模板与例子
-- `assets/templates.md`：风格预览 brief、"哪里不如它"对比表、需求卡、交接块。
+- `assets/templates.md`：风格预览 brief、"哪里不如它"对比表、需求卡、交接块、技法表（G）、风格帧评审（H）。
 - `examples/ui-iteration.md`：一个 UI 从被骂到被接受的完整循环（泛化）。
 - `examples/brand-launch.md`：起名→域名→账号矩阵→首周内容的完整例子（泛化）。
 
@@ -83,4 +85,4 @@ description: "pro-launch: product lifecycle skill for building an app/product fr
 | 11 / 报告 | `dataviz` | 漏斗、指标、对比做成图不做表 |
 | 全程 | `skill-skill` | 阶段结束把新坑沉淀成 skill/记忆，并审计本 skill |
 
-**待吸收**（pro-launch 稳定后，反过来读这些 skill 的经验并并入对应阶段细则）：pro-motion 的联系表与音频先行流程 → 09；post 的网感与系列化 → 10；apple-design 的审查清单 → 06；renhua 的口吻规则 → D14。吸收时只摘可检查的规则，别整段搬。
+**待吸收**（pro-launch 稳定后，反过来读这些 skill 的经验并并入对应阶段细则）：pro-motion 的联系表、技法表、风格帧与"真实渲染+排版"合成法 → 已并入 06b（2026-10-24）；音频先行流程 → 09；post 的网感与系列化 → 10；apple-design 的审查清单 → 06；renhua 的口吻规则 → D14。吸收时只摘可检查的规则，别整段搬。
