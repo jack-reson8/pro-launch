@@ -1,0 +1,20 @@
+{
+  "name": "pro-launch",
+  "interface": {
+    "displayName": "Pro Launch"
+  },
+  "plugins": [
+    {
+      "name": "pro-launch",
+      "source": {
+        "source": "local",
+        "path": "./plugins/pro-launch"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

@@ -20,6 +20,15 @@ git clone https://github.com/jack-reson8/pro-launch /tmp/pro-launch && cp -R /tm
 ```
 Then ask Claude Code things like "build me an app", "this UI looks generic", "find references", "name this product", "plan the launch".
 
+**Codex** (CLI or the ChatGPT desktop app):
+
+```bash
+codex plugin marketplace add jack-reson8/pro-launch
+codex plugin add pro-launch@pro-launch
+```
+
+Or copy `plugins/pro-launch/skills/pro-launch` into `~/.codex/skills/`. The skill follows the open [Agent Skills](https://agentskills.io) standard, so it works in Claude Code, Codex and any agent that reads SKILL.md.
+
 ## What's inside
 - `SKILL.md` – phases, gates, iron rules
 - `references/01-13` – one page per phase (incl. trademark & IP for multi-country launches)
