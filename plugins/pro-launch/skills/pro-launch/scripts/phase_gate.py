@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Gate check: does the project folder contain this phase's required artifacts, and are they filled in?
 
-  python3 phase_gate.py <project_dir> <phase|all>       phases: positioning naming refs style features frames ui assets qa video gtm growth ship
+  python3 phase_gate.py <project_dir> <phase|all>       phases: positioning naming refs cards style features frames ui assets qa video gtm growth ship
 
 Prints PASS/FAIL per artifact and exits 1 on any FAIL. Run it at the START of a phase (are the previous phase's artifacts real?)
 and at the END (did I produce mine?). A file counts only if it exists, is >300 bytes and has no 'TODO' / empty template fields.
@@ -12,8 +12,9 @@ Beyond "file is real", extra checks encode what the user keeps repeating (refere
   features/growth  must name the aha moment                                                  (D4)
   frames 06b visual craft, run BEFORE any UI code: >=3 technique sheets (hero/type scale/whitespace/signature),
          >=3 existing *-vs-ref.jpg style-frame comparisons, >=1 [product-native] direction, a 'Picked:' line   (D25)
-  ui     "不如它" table >=3 rows, no N/10 score used as verdict, + every frames check                 (D5 D25)
-  video  must state the transition method (转场)                                            (D7)
+  ui     "不如它" table >=3 rows, no N/10 score used as verdict, + every frames + cards check     (D5 D25 D27)
+  cards  docs/creative-cards.md: every card has 意图/算子/参数轴(>=3)/衍生(3)/融合; no card = no build (D20 D27)
+  video  must state the transition method (转场) + docs/marketing-to-product.md maps every claim (D7 D30)
   assets every asset row carries a source/授权 word                                          (D11 D19)
 Paths are the skill's convention (see references/*.md); override in <project>/.prolaunch.json: {"positioning": ["docs/pos.md"]}.
 """
@@ -23,13 +24,14 @@ GATES = {
     "positioning": ["docs/positioning.md"],
     "naming":      ["docs/naming.md", "docs/trademark.md"],
     "refs":        ["refs/style-refs/INDEX.md", "docs/competitors.md"],
+    "cards":       ["docs/creative-cards.md"],
     "style":       ["docs/style-bible.md"],
     "features":    ["docs/feature-map.md"],
     "frames":      ["docs/technique-sheets.md", "docs/style-frames.md"],
     "ui":          ["docs/ui-log.md"],
     "assets":      ["docs/asset-list.md"],
     "qa":          ["docs/qa-walkthrough.md"],
-    "video":       ["docs/video-brief.md"],
+    "video":       ["docs/video-brief.md", "docs/marketing-to-product.md"],
     "gtm":         ["docs/gtm.md", "docs/manual-tasks.md"],
     "growth":      ["docs/metrics.md"],
     "ship":        ["docs/ship-checklist.md", "docs/lessons.md"],
@@ -109,7 +111,7 @@ def extra_ui(root):
     return [
         ("不如它" in t and n >= 3, f"'哪里不如它' table has >=3 rows (have {max(n,0)})"),
         (not score, "no N/10 self-score in ui-log"),
-    ] + extra_craft(root)
+    ] + extra_craft(root) + extra_cards(root)
 
 
 def extra_craft(root):
@@ -130,7 +132,28 @@ def extra_craft(root):
 
 
 def extra_video(root):
-    return [("转场" in read(root, "docs/video-brief.md"), "video-brief states the 转场 method")]
+    m2p = read(root, "docs/marketing-to-product.md")
+    rows = [l for l in m2p.splitlines() if l.count("|") >= 4 and not re.match(r"^\s*\|[\s:|-]+\|?\s*$", l)][1:]
+    return [("转场" in read(root, "docs/video-brief.md"), "video-brief states the 转场 method"),
+            (len(rows) >= 1 and all(re.search(r"已有|已实现|待办|删除|改片", r) for r in rows),
+             f"marketing-to-product: every claim row has 状态 已有/待办/删除/改片 ({len(rows)} rows)  [D30]")]
+
+
+def extra_cards(root):
+    """Creative card gate (D27): ### per card, fields '- 意图:' '- 算子:' '- 参数轴:' '- 衍生:' '- 融合:'."""
+    t = read(root, "docs/creative-cards.md")
+    cs = re.split(r"(?m)^### ", t)[1:]
+    out = [(len(cs) >= 1, f"creative-cards.md has >=1 card (have {len(cs)})")]
+    for c in cs:
+        name = c.splitlines()[0].strip()[:24]
+        op = field(c, "算子")
+        axes = [x for x in re.split(r"[/／、,，]", field(c, "参数轴")) if x.strip()]
+        der = [x for x in re.split(r"[；;]", field(c, "衍生")) if x.strip()]
+        miss = [k for k in ("意图", "算子", "融合") if len(field(c, k)) < 4]
+        good = not miss and len(axes) >= 3 and len(der) >= 3 and len(op) >= 6
+        why = f"card '{name}': 轴{len(axes)}/3 衍生{len(der)}/3" + (f" 缺{','.join(miss)}" if miss else "")
+        out.append((good, why + "  [D27]"))
+    return out
 
 
 def extra_assets(root):
@@ -138,7 +161,7 @@ def extra_assets(root):
     return [(bool(re.search(r"授权|license|licence|出处|source", t, re.I)), "asset-list records source/授权")]
 
 
-EXTRA = {"refs": extra_refs, "style": extra_style, "features": aha("docs/feature-map.md"),
+EXTRA = {"refs": extra_refs, "cards": extra_cards, "style": extra_style, "features": aha("docs/feature-map.md"),
          "growth": aha("docs/metrics.md"), "frames": extra_craft, "ui": extra_ui, "video": extra_video, "assets": extra_assets}
 
 

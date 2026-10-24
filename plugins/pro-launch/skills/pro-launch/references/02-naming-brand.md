@@ -9,6 +9,7 @@
 4. **评分表**（权重可调）：含义与故事 25 · 多语种可读性 20 · 独特性 15 · 域名 15 · 气质契合 15 · 风险 10。标【判】，不假装实测。
 5. **多语读音测试**：写出日/韩/中/越/泰的读法，找难音与不雅谐音。
 6. **域名**：`python3 scripts/domain_check.py 名字1 名字2 --tlds com,app,ai --prefixes get,try --appstore us,jp,kr`。
+   - **品牌短变体必扫（M53）**：脚本默认生成 前缀(hi/get/my/use/the/go/try)+名、名+后缀(app/pic/pics/cam/hq/studio)、前缀+名+后缀，保留 ≤10 字符，并把可注册的按长度列在 SHORTLIST。说".com 被占"之前必须先看 SHORTLIST；不要只查裸词和自己临时想到的两三个变体（hitutti.com 就是这样漏掉的）。
    - 4–7 字母的真词 `.com` 基本被占；成熟做法是品牌用最好的词，主域名用 `.app/.ai`，`.com` 用 get/try/app 变体承接。
    - "无解析"≠可注册：RDAP 404 之后还要以注册商结算页为准；溢价词在 RDAP 里看着是空的。
    - 要扫大批量：先走根服务器 UDP 查 NS（约 1000/s），再对 NXDOMAIN 用 RDAP 复核。
