@@ -1,6 +1,6 @@
 # pro-launch
 
-English | [简体中文](README.zh-CN.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Tiếng Việt](README.vi.md) | [हिन्दी](README.hi.md)
+English | [简体中文](https://github.com/jack-reson8/pro-launch/blob/main/README.zh-CN.md) | [日本語](https://github.com/jack-reson8/pro-launch/blob/main/README.ja.md) | [한국어](https://github.com/jack-reson8/pro-launch/blob/main/README.ko.md) | [Tiếng Việt](https://github.com/jack-reson8/pro-launch/blob/main/README.vi.md) | [हिन्दी](https://github.com/jack-reson8/pro-launch/blob/main/README.hi.md)
 
 A Claude Code skill that takes a product from 0 to 1 **taste-first**: positioning → naming, domains & trademark → reference hunting (GitHub/open-source first, then App Store and award winners) → style bible → feature map → UI/UX build loop → asset generation → device QA → launch video → GTM → growth → open-source / App Store shipping.
 
