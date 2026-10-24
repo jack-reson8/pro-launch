@@ -3,6 +3,7 @@
 [English](README.md) | [简体中文](README.zh-CN.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Tiếng Việt](README.vi.md) | हिन्दी
 
 <p align="center"><img src="docs/share.png" alt="pro-launch: from an idea to style frames" width="100%"></p>
+<p align="center"><sub><a href="https://github.com/jack-reson8/copy-that"><b>Copy That</b></a> सीरीज़ का हिस्सा · एक लाइन में पूरा सेट इंस्टॉल करें</sub></p>
 
 यह Claude Code का एक skill है जो किसी प्रोडक्ट को 0 से 1 तक **टेस्ट-फ़र्स्ट** तरीके से ले जाता है: पोज़िशनिंग → नाम, डोमेन और ट्रेडमार्क → रेफ़रेंस खोज (पहले GitHub/ओपन-सोर्स, फिर App Store और अवॉर्ड विजेता) → स्टाइल बाइबल → फ़ीचर मैप → UI/UX बिल्ड लूप → असेट जनरेशन → असली डिवाइस पर QA → लॉन्च वीडियो → GTM → ग्रोथ → ओपन-सोर्स / App Store पर शिप।
 
