@@ -20,6 +20,12 @@ if [ "$MODE" = "--mono" ] || [ "$OUT" = "--mono" ]; then
 fi
 swiftc -O "$HERE/cut.swift" -o "$OUT/.cut" 2>/dev/null || { echo "swiftc failed (need Xcode CLT)"; exit 1; }
 "$OUT/.cut" "$IN" "$OUT/$NAME-cut.png" 2
-if [ ! -d "$OUT/node_modules/@neplex" ]; then (cd "$OUT" && npm init -y >/dev/null && npm i @neplex/vectorizer svgo >/dev/null 2>&1) ; fi
+if [ ! -d "$OUT/node_modules/@neplex" ]; then
+  if [ "${PRO_LAUNCH_YES:-}" != "1" ]; then
+    echo "Needs npm packages in $OUT: @neplex/vectorizer@0.1.0 svgo@4.1.0"
+    echo "Ask the user; rerun with PRO_LAUNCH_YES=1 to install them."; exit 2
+  fi
+  (cd "$OUT" && npm init -y >/dev/null && npm i --save-exact @neplex/vectorizer@0.1.0 svgo@4.1.0 >/dev/null 2>&1)
+fi
 cp "$HERE/vectorize.js" "$OUT/vectorize.js"
 (cd "$OUT" && node vectorize.js "$NAME-cut.png" "$NAME.svg")

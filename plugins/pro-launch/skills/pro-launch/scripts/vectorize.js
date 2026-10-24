@@ -1,4 +1,4 @@
-// usage: node vectorize.js in.png out.svg   (needs: npm i @neplex/vectorizer svgo  -> see cutout_vector.sh)
+// usage: node vectorize.js in.png out.svg   (needs @neplex/vectorizer@0.1.0 and svgo@4.1.0, installed by cutout_vector.sh after the user's yes)
 // Colour PNG -> layered SVG with vtracer (via @neplex/vectorizer), then svgo. Settings that survived real use:
 // stacked layers, spline mode, speckle filter 8, 6-bit colour; flat illustrations only (not photos).
 const v = require('@neplex/vectorizer'), fs = require('fs'), { optimize } = require('svgo');

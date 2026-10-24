@@ -5,8 +5,18 @@ A Claude Code skill that takes a product from 0 to 1 **taste-first**: positionin
 Why it exists: most AI-built products fail not on code but because (1) no real references were studied, (2) the model grades its own work, (3) the user's repeated corrections never get written down. Every phase here forces a **real artifact** and a **gate** (`scripts/phase_gate.py`) before the next phase starts.
 
 ## Install
+
+In Claude Code:
+
+```
+/plugin marketplace add jack-reson8/pro-launch
+/plugin install pro-launch@pro-launch
+```
+
+Or as a plain skill folder:
+
 ```bash
-git clone https://github.com/jack-reson8/pro-launch ~/.claude/skills/pro-launch
+git clone https://github.com/jack-reson8/pro-launch /tmp/pro-launch && cp -R /tmp/pro-launch/plugins/pro-launch/skills/pro-launch ~/.claude/skills/
 ```
 Then ask Claude Code things like "build me an app", "this UI looks generic", "find references", "name this product", "plan the launch".
 

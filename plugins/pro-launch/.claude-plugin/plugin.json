@@ -1,0 +1,9 @@
+{
+  "name": "pro-launch",
+  "description": "Build a product 0→1 taste-first: references, naming and trademark checks, style bible, UI loop, launch video, GTM and shipping, with phase gates that force real artifacts.",
+  "version": "1.0.0",
+  "author": { "name": "jack-reson8" },
+  "homepage": "https://github.com/jack-reson8/pro-launch",
+  "license": "MIT",
+  "keywords": ["product", "app-development", "naming", "branding", "ui-design", "gtm", "launch", "indie-hacker", "claude-code"]
+}

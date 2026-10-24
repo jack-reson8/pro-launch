@@ -1,0 +1,12 @@
+{
+  "name": "pro-launch",
+  "description": "Build a product 0→1 taste-first with Claude Code: references, naming and trademark checks, style bible, UI loop, launch and shipping, with phase gates that force real artifacts.",
+  "owner": { "name": "jack-reson8" },
+  "plugins": [
+    {
+      "name": "pro-launch",
+      "source": "./plugins/pro-launch",
+      "description": "Product lifecycle skill: positioning, naming and domains, reference hunting, style bible and style frames, feature map, UI build loop, asset generation, device QA, launch video, GTM, growth and open-source/App Store shipping."
+    }
+  ]
+}
