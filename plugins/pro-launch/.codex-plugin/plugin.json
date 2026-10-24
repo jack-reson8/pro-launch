@@ -39,6 +39,8 @@
       "Plan the launch and GTM for my app"
     ],
     "brandColor": "#2563EB",
-    "screenshots": []
+    "screenshots": [],
+    "privacyPolicyURL": "https://github.com/jack-reson8/pro-launch/blob/main/PRIVACY.md",
+    "termsOfServiceURL": "https://github.com/jack-reson8/pro-launch/blob/main/LICENSE"
   }
 }
