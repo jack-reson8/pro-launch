@@ -117,3 +117,8 @@
 ①"pro-launch 做不出这么好看的产品；pro-motion 那套片子的样子我很满意。"（转述）
 ②发布片好看靠方法：真实参考帧、逐个技法表、开工前 3 个分歧风格帧、用 App 真实渲染图加排版合成而不是代码画、苹果式克制（一屏一个主角、大字号对比、大留白、真实系统界面时刻）。产品 UI 跳过了这些步骤，从记忆出发直接写代码。
 ③★`phase_gate.py <项目> frames` 必须全过才写 UI 代码：`docs/technique-sheets.md` ≥3 份（主角占比/字号比/留白/招牌手法）、`docs/style-frames.md` 链接 ≥3 张真实存在的 `*-vs-ref.jpg`、≥1 个 `[product-native]` 方向、有 `Picked:` 行。细则 `references/06b-visual-craft.md`，脚本 `scripts/ref_frames.py`、`scripts/style_frame.py`。
+
+## D26 开源要真的被看到：PR 多提，但只提给活着的地方（2026-10-24）
+①"我 GitHub 那些 skill 有人收藏吗，有曝光吗，为什么没有？该提的 PR 提，PR 可以多提，几十几百个。"
+②13 个 PR 全提到了几个月没合并的大列表上，等于没提；clone 几十次全是爬虫，真人浏览接近 0，外部来源也是 0。数量要从"活着的列表 + 给别人修 bug 的 PR"里来，同一段话海投会被 GitHub 判成垃圾信息并限制账号。
+③★提 PR 前跑 `gh_exposure.py lists`，只投 ALIVE（14 天合并 ≥3）；每个列表按它自己的规则写；修复 PR 用 skill-skill 扫客观违规；每批新 fork 不超过约 6 个。分享图过 3 秒测试（一句话加真实产出，不只放 logo）。发帖文案写好，由 Jack 本人发。细则 `references/12b-oss-distribution.md`。

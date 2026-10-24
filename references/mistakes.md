@@ -49,3 +49,7 @@
 | 43 | yt-dlp 拉 YouTube 报 "Sign in to confirm you're not a bot"，反复重试 | YouTube 要登录；Vimeo 同样 | 直接用公开缩略帧 `i.ytimg.com/vi/<id>/{maxresdefault,hq1,hq2,hq3}.jpg`（`ref_frames.py` 自动回退）；Behance 用已开标签页列 CDN 链接 | 联系表输出里写明走的是视频还是缩略帧，不重试登录 |
 | 44 | 主会话亲自看几十张参考图/截图，额度烧光 | 读图没外包 | 派 Haiku 子代理读图，只回"每张一行"文字；主会话只看最终挑选拼图（先 `sips -Z 1200`） | 本阶段主会话读图次数 ≤2 |
 | 45 | 风格帧里的角色/图标/纹理用代码画，一看就廉价 | 缺素材时拿代码凑 | 风格帧只用真实渲染/截图/生成素材 + 排版 + 系统界面外壳（锁屏/通知/灵动岛）；缺素材就留白或交 Codex 生成 | `style_frame.py` spec 里只有 image/grid/pills/text/系统外壳图层，没有手绘路径 |
+| 46 | "为什么没有曝光"（13 个 PR 都没动静） | PR 投到了几个月没合并的大列表；只看 star 数选列表 | 先 `gh_exposure.py lists` 判活，只投 14 天合并 ≥3 的；被规则挡住的写触发条件进 manual-tasks | `docs/distribution.md` Targets 每行有 merged14d 数字 |
+| 47 | 把 clone 数当成曝光 | clone 大多是爬虫和收录脚本 | 看页面浏览独立访客和外部来源；外部来源为 0 说明缺的是发帖，不是 PR | 体检表同时列 views、clones、referrers |
+| 48 | 批量 fork 时 GitHub 报 "submitted too quickly"，两个 PR 卡住 | 短时间连续 fork 约 8 个，触发账号级限流 | 复用已有 fork，每批新 fork ≤6，剩下的把分支备好排队 | 子代理 brief 写明 fork 上限和排队办法 |
+| 49 | 分享图只放 logo，陌生人看不懂是干嘛的 | 学了知名项目的做法，可我们没有品牌认知 | 一句话加真实产出，或改写前→改写后；每个方向用一文一图两个案例验证 | 06b 参考排名里写 3 秒测试结果 |

@@ -12,13 +12,13 @@ description: "pro-launch: product lifecycle skill for building an app/product fr
 2. **沉淀**：纠正和新坑当场写进 CLAUDE.md / 记忆 / skill，永远有效 → D2
 3. **强风格化、不规整、indie**：规整圆角矩形就是失败 → D3
 4. **GTM、增长、aha**：从第一天按能卖来做，先验证有人付钱 → D4
-5. **审美与手感不达标就打回**：丑、土、web 感；要丝滑转场、一气呵成；产品 UI 要和发布片一样好看 → D5 D7 D25
+5. **审美与手感不达标就打回**：丑、土、web 感；要丝滑转场、一气呵成；产品 UI 要和发布片一样好看 → D5 D7 D25；开源要有人看到 → D26
 6. **高效省 token**：一键执行，走不通回头，不反复验证，调研交子代理 → D6
 7. **要深度**：交完整报告而不是问答，做完直接打开给他看 → D8 D18
 8. **自己做别问我，用好现有工具**：只问口味/花钱/发布/账号；先查连接器与 MCP → D9 D10
 
 ## 开工三步（每次，不问用户小事）
-0. 读 `references/user-repeated-demands.md`（一页，25 条），并把项目文件夹与记忆里已有的材料先翻一遍，再决定缺什么。
+0. 读 `references/user-repeated-demands.md`（一页，26 条），并把项目文件夹与记忆里已有的材料先翻一遍，再决定缺什么。
 1. `python3 scripts/phase_gate.py <项目目录> all` 看现在在哪个阶段、前一阶段产物是否是真的。
 2. 读 `references/mistakes.md`（错误账本，每条有"检查动作"）；在当前阶段结束前逐条过一遍相关项。
 3. 项目根没有 `CLAUDE.md` 就建一个：产品一句话、审美红线（要/不要）、目录、"旧会话为什么变差"。红线只写这里，所有会话共用。
@@ -38,10 +38,10 @@ description: "pro-launch: product lifecycle skill for building an app/product fr
 | 9 | 发布视频 | `video-brief.md`：音乐机制、主角、镜头表 | **音频先行**，★写明转场方式（D7）；成片前先抽帧联系表；委托 `pro-motion` | 09 |
 | 10 | GTM 与社媒 | `gtm.md`（渠道/顺序/内容支柱）+ **`manual-tasks.md`（只有用户本人能做的事，一次列全，每项带链接并已预填，D24）** | 账号注册/付款/验证码/发帖/DM 一律用户本人；发布前把内容摆给用户确认一次；文案走 `renhua`，配图走 `post`（D14） | 10 |
 | 11 | 增长与数据 | `metrics.md`：事件表、漏斗每环健康线、一周一个假设 | ★写明 aha 指标（D4）；一周只验一个假设；未达线不加流量、不开新市场 | 11 |
-| 12 | 开源与上架 | `ship-checklist.md` + `lessons.md` | 隐私政策/条款真实链接、订阅页合规、许可证、素材授权、无密钥入库；★`docs/lessons.md` 记下本项目新坑与落盘位置（D2） | 12 |
+| 12 | 开源与上架 | `ship-checklist.md` + `lessons.md`；开源仓库另加 `distribution.md`（体检数据、活跃列表、修复 PR、人工渠道，见 12b） | 隐私政策/条款真实链接、订阅页合规、许可证、素材授权、无密钥入库；★`docs/lessons.md` 记下本项目新坑与落盘位置（D2）；开源仓库提 PR 前 ★`gh_exposure.py lists` 判活，只投 ALIVE（D26） | 12 · 12b |
 
 细则（到该阶段**才读**那一页，读完必须产出上表那个文件）：
-`references/01-idea-positioning.md` · `02-naming-brand.md` · `03-find-references.md` · `03b-style-names-and-creative-decode.md` · `04-style-bible.md` · `05-feature-planning.md` · `06b-visual-craft.md`（UI 阶段先读）· `06-ui-build-loop.md` · `07-asset-generation.md` · `08-device-qa.md` · `09-launch-video.md` · `10-gtm-social.md` · `11-growth-data.md` · `12-ship-opensource.md`（均在 `references/`），错误账本 `references/mistakes.md`。
+`references/01-idea-positioning.md` · `02-naming-brand.md` · `03-find-references.md` · `03b-style-names-and-creative-decode.md` · `04-style-bible.md` · `05-feature-planning.md` · `06b-visual-craft.md`（UI 阶段先读）· `06-ui-build-loop.md` · `07-asset-generation.md` · `08-device-qa.md` · `09-launch-video.md` · `10-gtm-social.md` · `11-growth-data.md` · `12-ship-opensource.md` · `12b-oss-distribution.md`（均在 `references/`），错误账本 `references/mistakes.md`。
 
 ## 开工前盘点与工具可用性
 盘点前先跑 `git branch -a` 与 `git worktree list`（M38）；陌生名字先 grep 项目与记忆，可能是语音识别错（M39）；方案里用到 Rive/Spline/LottieFiles 先标可用性：Rive MCP 需开桌面编辑器，Spline、LottieFiles 需用户 /mcp 授权（M40）。后台任务写明完成后自动做什么（M36）。
@@ -68,6 +68,7 @@ description: "pro-launch: product lifecycle skill for building an app/product fr
 - `domain_check.py` 域名（RDAP）+ 各区 App Store 同名检索。
 - `ref_frames.py` 参考视频/图片 → 真实帧联系表（yt-dlp+ffmpeg；YouTube 要登录时自动改用公开缩略帧；下载走 curl）。
 - `style_frame.py` 风格帧合成：`frame` 用 JSON 把真实渲染图/截图 + 排版 + 锁屏/通知/灵动岛外壳拼成帧；`compare` 出"参考 vs 风格帧"对比图并把 ≥3 条"哪里不如它"烧进图里（少于 3 条或写分数直接报错）；`sheet` 出三选一拼图。
+- `gh_exposure.py` 开源曝光体检：`repos` 看 star/浏览/clone/来源（clone 多、浏览 0 = 爬虫），`lists` 判断列表是否还活着（14 天合并 <3 = 死），`prs` 给我所有未合并 PR 标 ALIVE/DEAD。
 - `cutout_vector.sh` 生成图 → Vision 抠图（缩边）→ vtracer 矢量化 → svgo；`--mono` 走 potrace。依赖同目录的 `scripts/cut.swift`、`scripts/vectorize.js`。
 
 ## 模板与例子

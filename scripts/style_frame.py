@@ -13,21 +13,35 @@ Layer types (all coords in px of the frame; "x":"c" centres):
   image  {src, box:[x,y,w,h], radius:44, shadow:50, fit:"cover"|"contain"}       a real screenshot / render / photo
   grid   {srcs:[...], box:[x,y,w,h], cols:3, gap:18, radius:22}                    many real outputs at once
   pills  {srcs:[...], box:[x,y,w,h], heights:[0..1,...]}                           cover-cropped columns (EQ / light bars)
-  text   {text, y, x:"c", size:120, weight:"Heavy", color:"#111", font:path}       SF Pro variable; CJK → Hiragino Sans GB
+  text   {text, y, x:"c"|px|{r:px}, size, weight, color, font:path|"mono", lh}     SF Pro variable; CJK → Hiragino; "\n" = new line
+  block  {box, bg, radius, border, pad, text, size, font, color, lh}               panel of real output set as type
   island {y:36, w:370, h:108}                                                     Dynamic Island capsule
   clock  {time:"9:41", date:"Saturday 24 October", y:220, color:"#FFF"}           lock-screen clock
   notif  {y, icon, app, title, body, dark:false}                                  notification banner (system chrome only)
 System chrome (island/clock/notif) is layout, not art: icons and imagery inside it must still be real files.
 """
-import argparse, json, re, sys
+import argparse, json, os, re, sys
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
 SF, CJK = "/System/Library/Fonts/SFNS.ttf", "/System/Library/Fonts/Hiragino Sans GB.ttc"
+MONO = "/System/Library/Fonts/SFNSMono.ttf"
+# Hiragino tops out at W6 and reads thin next to SF Heavy; prefer Noto Sans SC (OFL, variable 100-900) when installed:
+# curl -L -o ~/Library/Fonts/NotoSansSC-VF.ttf "https://github.com/google/fonts/raw/main/ofl/notosanssc/NotoSansSC%5Bwght%5D.ttf"
+NOTO = os.path.expanduser("~/Library/Fonts/NotoSansSC-VF.ttf")
+CJK_W = {"Light": 300, "Regular": 400, "Medium": 500, "Semibold": 600, "Bold": 700, "Heavy": 900, "Black": 900}
 
 
 def font(sz, weight="Bold", text="", path=None):
-    if path:
+    if path == "mono" and not re.search(r"[぀-ヿ㐀-鿿가-힯]", text):
+        f = ImageFont.truetype(MONO, sz)
+        f.set_variation_by_name(weight if weight in ("Light", "Regular", "Medium", "Semibold", "Bold", "Heavy") else "Regular")
+        return f
+    if path and path != "mono":
         return ImageFont.truetype(path, sz)
+    if re.search(r"[぀-ヿ㐀-鿿가-힯]", text) and os.path.exists(NOTO):
+        f = ImageFont.truetype(NOTO, sz)
+        f.set_variation_by_axes([CJK_W.get(weight, 700)])
+        return f
     if re.search(r"[぀-ヿ㐀-鿿가-힯]", text):
         return ImageFont.truetype(CJK, sz, index=1 if weight in ("Semibold", "Bold", "Heavy", "Black") else 0)
     f = ImageFont.truetype(SF, sz)
@@ -63,11 +77,15 @@ def paste(cv, im, x, y, rad=0, shadow=0, sa=80):
 
 
 def text(cv, L):
+    """One or more lines ("\n"); x: "c" centre, a number = left edge, or {"r": right edge}. lh = line height factor."""
     d, W = ImageDraw.Draw(cv), cv.width
-    f = font(L.get("size", 120), L.get("weight", "Bold"), L["text"], L.get("font"))
-    w = d.textlength(L["text"], font=f)
-    x = (W - w) / 2 if L.get("x", "c") == "c" else L["x"]
-    d.text((x, L["y"]), L["text"], font=f, fill=rgba(L.get("color", "#111111")))
+    sz = L.get("size", 120)
+    for i, ln in enumerate(L["text"].split("\n")):
+        f = font(sz, L.get("weight", "Bold"), ln, L.get("font"))
+        w = d.textlength(ln, font=f)
+        x = L.get("x", "c")
+        x = (W - w) / 2 if x == "c" else (x["r"] - w if isinstance(x, dict) else x)
+        d.text((x, L["y"] + i * sz * L.get("lh", 1.25)), ln, font=f, fill=rgba(L.get("color", "#111111")))
 
 
 def layer(cv, L):
@@ -95,6 +113,12 @@ def layer(cv, L):
             paste(cv, fit(Image.open(s), pw, h), x0 + i * (pw + g), y0 + bh - h, pw // 2)
     elif t == "text":
         text(cv, L)
+    elif t == "block":   # a panel holding real output as type (a transcript, an audit, before/after copy)
+        x, y, w, h = L["box"]
+        ImageDraw.Draw(cv).rounded_rectangle((x, y, x + w, y + h), L.get("radius", 28), fill=rgba(L.get("bg", "#FFFFFF"), L.get("bg_alpha", 255)),
+                                             outline=rgba(L["border"]) if L.get("border") else None, width=L.get("border_w", 2))
+        pad = L.get("pad", 40)
+        text(cv, {**L, "x": x + pad, "y": y + pad, "text": L["text"]})
     elif t == "island":
         w, h = L.get("w", 370), L.get("h", 108)
         ImageDraw.Draw(cv).rounded_rectangle(((W - w) // 2, L.get("y", 36), (W + w) // 2, L.get("y", 36) + h), h // 2, fill=(0, 0, 0, 255))

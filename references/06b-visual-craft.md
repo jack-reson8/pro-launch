@@ -18,6 +18,8 @@ python3 scripts/ref_frames.py <behance-cdn-url> <url> ... --name behance-x      
 /usr/bin/python3 scripts/appstore_refs.py "App A" --country jp                               # App Store art (existing script)
 ```
 - YouTube now asks yt-dlp to sign in; the script falls back to `i.ytimg.com/vi/<id>/{maxresdefault,hq1,hq2,hq3}.jpg` by itself. 4 real frames beat 24 imagined ones. Don't keep retrying the login.
+- **3-second test, then rank.** For each reference, ask the image reader: "can a stranger tell what this product does in 3 seconds, and is the content real output or just a logo?". Rank the references on that. The top ones set the direction axes, so the directions don't come from whichever looked prettiest. In 2026-10, 12 of 17 popular GitHub share images were logo-only and failed. Only Supabase (headline plus real UI) and Firecrawl (input → output) passed, and both shaped the accepted directions. For a product nobody knows yet, comprehension beats brand.
+- Bulk-pull real share images of popular repos: GraphQL `repository{usesCustomOpenGraphImage openGraphImageUrl}` for ~30 repos in one query, keeping the custom ones.
 - **You don't read the sheets in the main session.** Send a Haiku subagent the paths plus the technique-sheet fields below. It returns text, one line per frame. You read the text.
 
 ## V2 · Technique sheet per reference (`docs/technique-sheets.md`)
@@ -40,6 +42,8 @@ Compared with 03's reverse-prompt card, this sheet measures **composition** (her
 1. Write 3 directions. Each one is `name · paired reference (from V2) · 2–3 borrowed techniques · which real renders it uses`. Rules:
    - If one familiar label ("pop", "flat", "clean SaaS", "glassmorphism") can describe a direction, it isn't new enough. Replace it.
    - **≥1 of the 3 must be product-native**: it turns one of the product's own features into the visual idea (Tutti: "the punched star hole IS the window to the next look"). In the accepted Tutti review, 6 of 9 ideas were tagged 补充 (product-native) and 3 were 果味 (Apple-derived). Tag each direction `[ref-derived]` or `[product-native]`.
+   - Map directions to what the product *does*: if every item in a family is a transformation (AI tone → human tone, music → film, link → Markdown), "before → after" is the native structure.
+   - **Prove each direction on two opposite cases** before showing it, e.g. a text-only product and a visual one. A direction that works for only one of them can't be a series system.
    - Directions must differ in **structure** (white stage vs full-bleed grid vs dark light-columns), not only in colour.
 2. Build each frame with `scripts/style_frame.py frame spec.json`. Start from `assets/style-frame-spec.example.json`, which holds three structurally different frames (white stage, lock screen + notification, dark light-columns), and swap in the project's renders. Use real renders as `image`/`grid`/`pills` layers, type as `text` layers, and system chrome (`island`, `clock`, `notif`) when the screen lives on the lock screen or in notifications. **No code-drawn mascots, icons, illustrations or textures.** If a frame needs art that doesn't exist yet, generate it (07 / Codex) or leave the space empty.
 3. Use a different subject or photo per frame. The same person in every frame read as repetitive. Mix full-body, half-body, pet, object and scenery.
@@ -73,7 +77,7 @@ Turn the picked frame into the style bible's tokens (04): colours, type sizes an
 - python.org Python on macOS lacks CA certs (`CERTIFICATE_VERIFY_FAILED`), so the scripts download through `curl`.
 - The in-app browser asks for permission on every new site. Prefer the shell scripts for frames.
 - Simulator renders are small (Tutti templates were 540×720). Scale them up at most ~2× in a frame, or render at @3x first. Blurry content looks cheap at once.
-- SF Pro is variable: `set_variation_by_name("Heavy")`. CJK text falls back to Hiragino Sans GB (auto in `style_frame.py`). Check that each language renders and that no glyph shows as tofu.
+- SF Pro is variable: `set_variation_by_name("Heavy")`. Hiragino Sans GB stops at W6, so a Chinese headline looked thin next to SF Heavy. `style_frame.py` uses Noto Sans SC (OFL, variable 100–900, curl line in its header) when installed. Match the weight across scripts before judging the frame. Check that each language renders and that no glyph shows as tofu.
 - On a lock-screen frame the clock covered the subject's eyes (test frame B). Choose a wallpaper or render whose face sits below the top ~35%, or crop it there. Faces stay clear (Tutti red line).
 - `pills` and `grid` centre-crop. Template renders with text or borders near the edge came out with clipped fragments (column 4's half word). Choose renders whose subject is centred, or pre-crop them.
 - Stills hide motion. When a reference is a video and the transition matters, grab dense frames (8 fps) of that moment rather than judging from the 24-frame sheet.
