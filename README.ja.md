@@ -2,6 +2,8 @@
 
 [English](README.md) | [简体中文](README.zh-CN.md) | 日本語 | [한국어](README.ko.md) | [Tiếng Việt](README.vi.md) | [हिन्दी](README.hi.md)
 
+<p align="center"><img src="docs/share.png" alt="pro-launch: from an idea to style frames" width="100%"></p>
+
 プロダクトを 0 から 1 へ **センス最優先** で進める Claude Code スキルです。ポジショニング → ネーミング・ドメイン・商標 → リファレンス探し（まず GitHub / OSS、次に App Store とアワード受賞作）→ スタイルバイブル → 機能マップ → UI/UX ビルドループ → アセット生成 → 実機 QA → ローンチ動画 → GTM → グロース → OSS 公開 / App Store 申請、までを扱います。
 
 作った理由：AI が作るプロダクトの多くは、コードではなく次の理由でつまずきます。(1) 本物のリファレンスを調べていない、(2) モデルが自分の成果物を自分で採点している、(3) ユーザーが繰り返し出す修正指示がどこにも記録されない。そこで各フェーズで **実際の成果物** を必ず作らせ、次のフェーズに進む前に **ゲート**（`scripts/phase_gate.py`）を通すようにしています。

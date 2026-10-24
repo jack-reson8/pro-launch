@@ -2,6 +2,8 @@
 
 [English](README.md) | [简体中文](README.zh-CN.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | Tiếng Việt | [हिन्दी](README.hi.md)
 
+<p align="center"><img src="docs/share.png" alt="pro-launch: from an idea to style frames" width="100%"></p>
+
 Một skill cho Claude Code giúp đưa sản phẩm từ 0 lên 1 theo hướng **gu thẩm mỹ đặt lên hàng đầu**: định vị → đặt tên, tên miền & nhãn hiệu → tìm tham chiếu (ưu tiên GitHub/mã nguồn mở, sau đó đến App Store và các app đạt giải) → style bible → bản đồ tính năng → vòng lặp xây dựng UI/UX → tạo asset → QA trên thiết bị thật → video ra mắt → GTM → tăng trưởng → phát hành mã nguồn mở / lên App Store.
 
 Vì sao có skill này: phần lớn sản phẩm do AI làm thất bại không phải vì code, mà vì (1) chưa từng nghiên cứu tham chiếu thật, (2) mô hình tự chấm điểm bài của chính mình, (3) những lần người dùng sửa đi sửa lại không bao giờ được ghi lại. Mỗi giai đoạn ở đây đều buộc phải tạo ra **sản phẩm thật** và vượt qua một **cổng kiểm tra** (`scripts/phase_gate.py`) trước khi sang giai đoạn tiếp theo.

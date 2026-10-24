@@ -2,6 +2,8 @@
 
 [English](README.md) | 简体中文 | [日本語](README.ja.md) | [한국어](README.ko.md) | [Tiếng Việt](README.vi.md) | [हिन्दी](README.hi.md)
 
+<p align="center"><img src="docs/share.png" alt="pro-launch: from an idea to style frames" width="100%"></p>
+
 A Claude Code skill，用 **审美优先** 的方式把产品从 0 做到 1：定位 → 起名、域名与商标 → 找参考（先 GitHub 开源，再 App Store 和获奖作品）→ 风格圣经 → 功能地图 → UI/UX 搭建循环 → 素材生成 → 真机 QA → 发布视频 → GTM → 增长 → 开源 / App Store 上架。
 
 为什么要做它：大多数 AI 做出来的产品，败的不是代码，而是 (1) 没有认真研究过真实参考，(2) 模型自己给自己打分，(3) 用户反复提的纠正从来没被记下来。这里每个阶段都必须产出 **真实的产物**，并在进入下一阶段前通过一道 **关卡**（`scripts/phase_gate.py`）。

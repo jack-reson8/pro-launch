@@ -2,6 +2,8 @@
 
 English | [简体中文](README.zh-CN.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Tiếng Việt](README.vi.md) | [हिन्दी](README.hi.md)
 
+<p align="center"><img src="docs/share.png" alt="pro-launch: from an idea to style frames" width="100%"></p>
+
 A Claude Code skill that takes a product from 0 to 1 **taste-first**: positioning → naming, domains & trademark → reference hunting (GitHub/open-source first, then App Store and award winners) → style bible → feature map → UI/UX build loop → asset generation → device QA → launch video → GTM → growth → open-source / App Store shipping.
 
 Why it exists: most AI-built products fail not on code but because (1) no real references were studied, (2) the model grades its own work, (3) the user's repeated corrections never get written down. Every phase here forces a **real artifact** and a **gate** (`scripts/phase_gate.py`) before the next phase starts.

@@ -2,6 +2,8 @@
 
 [English](README.md) | [简体中文](README.zh-CN.md) | [日本語](README.ja.md) | 한국어 | [Tiếng Việt](README.vi.md) | [हिन्दी](README.hi.md)
 
+<p align="center"><img src="docs/share.png" alt="pro-launch: from an idea to style frames" width="100%"></p>
+
 제품을 0에서 1로 **감각 우선**으로 끌고 가는 Claude Code 스킬입니다. 포지셔닝 → 네이밍·도메인·상표 → 레퍼런스 탐색(GitHub/오픈소스 먼저, 그다음 App Store와 수상작) → 스타일 바이블 → 기능 맵 → UI/UX 빌드 루프 → 에셋 생성 → 실기기 QA → 런칭 영상 → GTM → 그로스 → 오픈소스 / App Store 출시까지 다룹니다.
 
 만든 이유: AI가 만든 제품이 실패하는 건 대부분 코드 때문이 아닙니다. (1) 진짜 레퍼런스를 연구하지 않았고, (2) 모델이 자기 결과물을 스스로 채점하고, (3) 사용자가 반복해서 하는 지적이 어디에도 기록되지 않기 때문입니다. 그래서 모든 단계에서 **실제 산출물**을 만들게 하고, 다음 단계로 넘어가기 전에 **게이트**(`scripts/phase_gate.py`)를 통과하도록 했습니다.
