@@ -25,7 +25,7 @@ description: "pro-launch: build an app or product 0 to 1 with AI, taste-first: p
 
 ## 视觉总闸（任何"给人看的画面"都先过这里，2026-10-24 官网三版被骂"垃圾"后加）
 App 屏、官网/落地页、海报、宣传图、"先出几个预览看看"——**全部算第 6 阶段**，不因为是网页或"只是预览"就跳过：
-1. 先读 `references/06b-visual-craft.md`；做网页再读 `references/06c-web-craft.md`（= pro-motion `web-craft.md` 的同步副本，主版本在 pro-motion，改那边再同步）。
+1. 先查全局库 `python3 ~/.claude/style-library/lookup.py <族字母或关键词>`（提示词与参考库只有一份，不拷进 skill；库不在就说明），在产物里写「用了库条目：…」；再读 `references/06b-visual-craft.md`；做网页再读 `references/06c-web-craft.md`（= pro-motion `web-craft.md` 的同步副本，主版本在 pro-motion，改那边再同步）。
 2. 参考在写第一行代码**之前**选定并拆成技法表，`Register:`（克制 / 风格化）从用户喜欢的参考里定。网页的技法表、风格帧、参考拆层文件都放 `docs/site/`（`web_gate.py` 默认查这里；App 屏才用 `docs/technique-sheets.md`）。**先做页面、再去找参考来比 = 无效**，参考只剩打分作用。
 3. `phase_gate.py <项目> frames`（网页用 `web`，它调用 pro-motion 的 `web_gate.py`：参考拆层文件、技法表字段、Register/Picked、git 时间核对技法表先于代码）全 PASS 才写代码；发给用户前再跑 `web_gate.py <项目> --ship`。
 4. 发给用户前：如果"哪里不如它"里有一条是**结构或风格化程度**的差距（不是细节），这版不发，重做。
